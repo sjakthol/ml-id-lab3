@@ -39,9 +39,9 @@ Resources:
     Type: "AWS::SageMaker::Model"
     Properties:
       ModelName: !Sub ${Environment}-${ParentStackName}-${CommitID}-${Timestamp}
-      ExecutionRoleArn: 
+      ExecutionRoleArn:
         Fn::ImportValue:
-          !Sub "${ParentStackName}-sagemaker-role-arn" 
+          !Sub "${ParentStackName}-sagemaker-role-arn"
       PrimaryContainer:
         ModelDataUrl: !Sub ${ModelData}
         Image: !Sub ${ContainerImage}
@@ -60,5 +60,5 @@ Resources:
         - ModelName: !GetAtt Model.ModelName
           VariantName: AllTraffic
           InitialInstanceCount: 1
-          InstanceType: ml.t2.medium
+          InstanceType: ml.c4.2xlarge
           InitialVariantWeight: 1
